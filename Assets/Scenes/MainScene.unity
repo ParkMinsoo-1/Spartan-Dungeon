@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 86545410}
   - component: {fileID: 86545411}
   m_Layer: 5
-  m_Name: Conditions
+  m_Name: Resources
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20, y: -20}
-  m_SizeDelta: {x: 500, y: 210}
+  m_SizeDelta: {x: 500, y: 180}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &86545411
 MonoBehaviour:
