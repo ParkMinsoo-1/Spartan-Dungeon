@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePos;
     private Vector2 movInput;
     private float cameraRotation;
-    public Transform cameraContainer;
+    public Transform cameraRoot; // 회전 중심 (플레이어 뒷부분)
+    public Transform cameraTransform; // 실제 카메라
+    public float cameraDistance = 5f;
+    public float cameraSmoothSpeed = 10f;
     
     
     [Header("Movement")]
@@ -73,10 +76,24 @@ public class PlayerController : MonoBehaviour
 
     void CameraLook()
     {
-        cameraRotation += mousePos.y * sensitibity;
+        // 마우스 입력으로 플레이어 회전
+        float mouseX = mousePos.x * sensitibity;
+        float mouseY = mousePos.y * sensitibity;
+    
+        transform.Rotate(0f, mouseX, 0f); // 플레이어 좌우 회전
+
+        cameraRotation -= mouseY;
         cameraRotation = Mathf.Clamp(cameraRotation, minRot, maxRot);
-        cameraContainer.localEulerAngles = new Vector3(-cameraRotation,0, 0);
-        transform.eulerAngles += new Vector3(0, mousePos.x * sensitibity, 0);
+
+        cameraRoot.localRotation = Quaternion.Euler(cameraRotation, 0f, 0f);
+
+        // 원하는 위치 계산
+        Vector3 desiredPosition = cameraRoot.position - cameraRoot.forward * cameraDistance;
+    
+        // 부드럽게 이동
+        cameraTransform.position = Vector3.Lerp(cameraTransform.position, desiredPosition, Time.deltaTime * cameraSmoothSpeed);
+
+        cameraTransform.LookAt(cameraRoot);
     }
 
     bool IsGrounded()
