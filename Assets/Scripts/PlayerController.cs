@@ -13,9 +13,11 @@ public class PlayerController : MonoBehaviour
     private float cameraRotation;
     public Transform cameraContainer;
     
+    
     [Header("Movement")]
     public float speed;
     public float jumpForce;
+    public LayerMask layerMask;
     
     [Header("CameraRotation")]
     public float maxRot;
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started && IsGrounded())
         {
             _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode.Impulse);
         }
@@ -75,5 +77,17 @@ public class PlayerController : MonoBehaviour
         cameraRotation = Mathf.Clamp(cameraRotation, minRot, maxRot);
         cameraContainer.localEulerAngles = new Vector3(-cameraRotation,0, 0);
         transform.eulerAngles += new Vector3(0, mousePos.x * sensitibity, 0);
+    }
+
+    bool IsGrounded()
+    {
+        Ray ray = new Ray (transform.position + transform.up * 0.01f, Vector3.down );
+
+        if (Physics.Raycast(ray,0.5f, layerMask))
+        {
+            return true;
+        }
+
+        return false;
     }
 }
