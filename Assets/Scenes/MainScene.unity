@@ -993,6 +993,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 963194228}
   cameraDistance: 5
   cameraSmoothSpeed: 10
+  camera: {fileID: 0}
   speed: 5
   jumpForce: 100
   layerMask:
