@@ -18,9 +18,10 @@ public class PlayerController : MonoBehaviour
     
     
     [Header("Movement")]
-    public float speed;
-    public float jumpForce;
-    public LayerMask layerMask;
+    [SerializeField] private float speed ;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private LayerMask layerMask;
+    public float Speed {get {return speed;} set {speed = value;}}
     
     [Header("CameraRotation")]
     public float maxRot;
