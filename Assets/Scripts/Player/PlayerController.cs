@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    
     private Rigidbody _rigidbody;
     private Vector2 mousePos;
     private Vector2 movInput;

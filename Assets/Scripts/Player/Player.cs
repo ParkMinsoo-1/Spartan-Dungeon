@@ -12,5 +12,6 @@ public class Player : MonoBehaviour
         CharacterManager.Instance.Player = this;
         _playerController = GetComponent<PlayerController>();
         _resourceController = GetComponent<ResourceController>();
+        CharacterManager.Instance.Player._resourceController.playerController = _playerController;
     }
 }

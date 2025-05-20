@@ -15,7 +15,7 @@ public class ResourceController : MonoBehaviour
         stamina.SubtractionResource(stamina.passiveValue*Time.deltaTime);
         if (stamina.currentValue <= 0f)
         {
-            playerController.Speed = 1.0f;
+            playerController.Speed = 2.0f;
         }
     }
 }
