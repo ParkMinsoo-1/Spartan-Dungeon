@@ -7,8 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    
-    
+
     private Rigidbody _rigidbody;
     private Vector2 mousePos;
     private Vector2 movInput;
@@ -17,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform; // 실제 카메라
     public float cameraDistance = 5f;
     public float cameraSmoothSpeed = 10f;
+    public Camera camera;
     
     
     [Header("Movement")]
@@ -33,11 +33,14 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        camera = Camera.main;
+        
     }
 
     private void FixedUpdate()
     {
         Move();
+        
     }
 
     private void LateUpdate()
@@ -109,5 +112,20 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void LookInfo() //마우스포인트에서 아이템의 정보를 확인함
+    {
+        //마우스 포인트에서 Ray를 발사함.
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 10, layerMask))
+        {
+            if (hit.collider.gameObject != null)
+            {
+                Debug.Log("물체가 없습니다.");
+            }
+        }
     }
 }
