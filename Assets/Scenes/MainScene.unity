@@ -371,7 +371,7 @@ MonoBehaviour:
   currentValue: 0
   startValue: 100
   maxValue: 100
-  passiveValue: 10
+  passiveValue: 0
 --- !u!1 &636316619
 GameObject:
   m_ObjectHideFlags: 0
