@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ItemData itemData;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
+        itemData = Resources.Load<ItemData>("ItemData/" + gameObject.name);
+
+        if (itemData == null)
+        {
+            Debug.Log($"{gameObject.name}을 찾을 수 없습니다.");
+        }
         
     }
 }
