@@ -23,5 +23,6 @@ public class ItemData : ScriptableObject
     public string itemDescription;
     public ItemType itemType;
     public GameObject itemPrefab;
+    public ConsumableType consumableType;
     public float value;
 }

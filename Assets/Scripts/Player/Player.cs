@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public PlayerController _playerController;
     public ResourceController _resourceController;
+    public ItemData _itemData;
+    
 
     private void Awake()
     {

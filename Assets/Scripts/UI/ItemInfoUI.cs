@@ -7,6 +7,15 @@ public class ItemInfoUI : MonoBehaviour
 {
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemDescriptionText;
+    public RectTransform itemInfoPanel;
+    
+    public Vector2 offset = new Vector2(200f, -150f);
+
+    public void Update()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+        itemInfoPanel.position = mousePosition + offset;
+    }
 
     public void ShowInfo(Interactable info)
     {

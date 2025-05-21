@@ -16,3 +16,5 @@ MonoBehaviour:
   itemDescription: "\uC2A4\uD0DC\uBBF8\uB108\uB97C \uD68C\uBCF5\uC2DC\uCF1C \uC90D\uB2C8\uB2E4."
   itemType: 0
   itemPrefab: {fileID: 3968524902276247107, guid: 4f00f6c7cdfdc4b4db6fa2e60236fdf7, type: 3}
+  consumableType: 1
+  value: 10

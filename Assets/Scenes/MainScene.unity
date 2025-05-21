@@ -730,13 +730,14 @@ GameObject:
   - component: {fileID: 903385205}
   - component: {fileID: 903385207}
   - component: {fileID: 903385206}
+  - component: {fileID: 903385208}
   m_Layer: 5
   m_Name: ItemInfo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &903385205
 RectTransform:
   m_ObjectHideFlags: 0
@@ -796,6 +797,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903385204}
   m_CullTransparentMesh: 1
+--- !u!114 &903385208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903385204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61423088b8388541be511af6d5e2f9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemNameText: {fileID: 919574979}
+  itemDescriptionText: {fileID: 1565542764}
+  itemInfoPanel: {fileID: 903385205}
+  offset: {x: 200, y: -150}
 --- !u!1 &919574977
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +933,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -68.48926, y: 0, z: -77.05029, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1118,6 +1135,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: cd395f05-1252-4c75-b874-4331bc7807c6
     m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 987844208}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteractInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8748d27c-f1f4-4e88-8f3a-586ccf64cbea
+    m_ActionName: Player/Interaction[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1208,7 +1241,7 @@ MonoBehaviour:
   camera: {fileID: 0}
   curInteractGameObject: {fileID: 0}
   checkRate: 0.05
-  itemInfoUI: {fileID: 0}
+  itemInfoUI: {fileID: 903385208}
   speed: 5
   jumpForce: 100
   layerMask:
@@ -1231,6 +1264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 0}
   _resourceController: {fileID: 0}
+  _itemData: {fileID: 0}
 --- !u!212 &987844210
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1676,7 +1710,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -73.38135, y: 0, z: -74.60437, w: -113.603424}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1924,6 +1958,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_Apple
       objectReference: {fileID: 0}
+    - target: {fileID: 8519842938803319069, guid: 6d9a2d51020c0ce4f97411a425a822dd, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1937,6 +1975,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2129537477100110665, guid: 4f00f6c7cdfdc4b4db6fa2e60236fdf7, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3437618161580705004, guid: 4f00f6c7cdfdc4b4db6fa2e60236fdf7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.69

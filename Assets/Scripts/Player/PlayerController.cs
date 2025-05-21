@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -84,6 +85,26 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnInteractInput(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            
+            if (interactable != null)
+            {
+                interactable.OnInteraction();
+                curInteractGameObject = null;
+                interactable = null;
+                itemInfoUI.HideInfo();
+            }
+
+            if (interactable == null)
+            {
+                Debug.Log("상호작용할 수 있는 아이템이 없습니다.");
+            }
+        }
+    }
+
     private void Move()
     {
         Vector3 direction = transform.forward*movInput.y + transform.right*movInput.x;
@@ -144,12 +165,11 @@ public class PlayerController : MonoBehaviour
                     if (obj != curInteractGameObject)
                     {
                         curInteractGameObject = obj;
-                        interactable = curInteractGameObject.GetComponent<ItemObject>();
+                        interactable = curInteractGameObject.GetComponent<Interactable>();
                         //Debug.Log($"{curInteractGameObject.name} 상호작용 할 수 있습니다.");
                         itemInfoUI.ShowInfo(interactable);
                     }
                 }
-                
                 else
                 {
                     curInteractGameObject = null;
@@ -163,6 +183,16 @@ public class PlayerController : MonoBehaviour
                 interactable = null;
                 itemInfoUI.HideInfo();
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        curInteractGameObject = other.gameObject;
+        if (curInteractGameObject != null)
+        {
+            interactable = curInteractGameObject.GetComponent<Interactable>();
+            
         }
     }
 }
