@@ -30,11 +30,12 @@ public class Player : MonoBehaviour
                 UseConsumableItem();
                 break;
             case ItemType.Buff:
-                if(coroutine != null)
+                if (coroutine != null)
                     StopCoroutine(coroutine);
-                coroutine = StartCoroutine(BuffCoroutine(_itemData));
+                coroutine = StartCoroutine(_resourceController.BuffCoroutine(_itemData));
                 break;
-        }    
+        }
+
         _itemData = null;
     }
 
@@ -49,28 +50,7 @@ public class Player : MonoBehaviour
                 _resourceController.resourceManager.stamina.AddResource(_itemData.value);
                 break;
         }
+
         _itemData = null;
-    }
-
-    private IEnumerator BuffCoroutine(ItemData itemData)
-    {
-        string methodName = $"Buff_{itemData.buffType}";
-        var method = GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
-
-        if (method != null)
-        {
-            yield return (IEnumerator)method.Invoke(this, new object[] { itemData });
-        }
-        else
-        {
-            Debug.Log($"Buff 메서드 {methodName}가 없습니다.");
-        }
-    }
-    private IEnumerator Buff_speed(ItemData item)
-    {
-        float originalSpeed = _playerController.Speed;
-        _playerController.Speed += item.buffValue;
-        yield return new WaitForSeconds(item.buffDuration);
-        _playerController.Speed = originalSpeed;
     }
 }
