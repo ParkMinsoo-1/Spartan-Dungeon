@@ -17,4 +17,4 @@ MonoBehaviour:
   itemType: 0
   itemPrefab: {fileID: 3968524902276247107, guid: 4f00f6c7cdfdc4b4db6fa2e60236fdf7, type: 3}
   consumableType: 1
-  value: 10
+  value: 30
