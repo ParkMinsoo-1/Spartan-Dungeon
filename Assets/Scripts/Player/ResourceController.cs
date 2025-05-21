@@ -18,4 +18,6 @@ public class ResourceController : MonoBehaviour
             playerController.Speed = 2.0f;
         }
     }
+    
+    
 }

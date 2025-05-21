@@ -15,7 +15,10 @@ MonoBehaviour:
   itemName: "\uBE75"
   itemDescription: "\uC774\uB3D9\uC18D\uB3C4\uB97C \uC21C\uAC04\uC801\uC73C\uB85C
     \uC99D\uAC00\uC2DC\uCF1C \uC90D\uB2C8\uB2E4."
-  itemType: 0
+  itemType: 2
   itemPrefab: {fileID: 9097320414639153012, guid: 28c31bbbe5d711544ad9fb06605b785c, type: 3}
   consumableType: 2
-  value: 10
+  value: 0
+  buffType: 1
+  buffValue: 10
+  buffDuration: 5

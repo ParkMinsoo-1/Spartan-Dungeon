@@ -6,13 +6,19 @@ public enum ItemType
 {
     Consumable,
     Equipable,
+    Buff
 }
 
 public enum ConsumableType
 {
     health,
     stamina,
-    Buff
+}
+
+public enum BuffType
+{
+    none,
+    speed
 }
 
 
@@ -26,4 +32,10 @@ public class ItemData : ScriptableObject
     public GameObject itemPrefab;
     public ConsumableType consumableType;
     public float value;
+    
+    [Header("BuffInfo")]
+    public BuffType buffType;
+    public float buffValue;
+    public float buffDuration;
+    
 }
