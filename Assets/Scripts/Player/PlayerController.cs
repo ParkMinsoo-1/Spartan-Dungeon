@@ -17,17 +17,9 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform; // 실제 카메라
     public float cameraDistance = 5f;
     public float cameraSmoothSpeed = 10f;
-    public Camera camera;
     public GameObject curInteractGameObject;
-    private Interactable interactable;
-    public float checkRate = 0.05f;
-    private float lastCheckTime;
-    
+    public Interactable interactable;
 
-    public ItemInfoUI itemInfoUI; //나중에 UI처리 매니저에서 한번에 정리할 수 있도록 변경해보자. 지금은 인스펙터에 넣어줌.
-    
-    
-    
     [Header("Movement")]
     [SerializeField] private float speed ;
     [SerializeField] private float jumpForce;
@@ -42,13 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        camera = Camera.main;
-        
-    }
-
-    private void Update()
-    {
-        LookInfo();
+       
     }
 
     private void FixedUpdate()
@@ -95,9 +81,8 @@ public class PlayerController : MonoBehaviour
                 interactable.OnInteraction();
                 curInteractGameObject = null;
                 interactable = null;
-                itemInfoUI.HideInfo();
             }
-
+     
             if (interactable == null)
             {
                 Debug.Log("상호작용할 수 있는 아이템이 없습니다.");
@@ -145,45 +130,6 @@ public class PlayerController : MonoBehaviour
         }
 
         return false;
-    }
-
-    public void LookInfo() //마우스포인트에서 아이템의 정보를 확인함
-    {
-        if (Time.time - lastCheckTime > checkRate) //업데이트 되는 시간을 조절하기 위함.
-        {
-            lastCheckTime = Time.time;
-            
-            //마우스 포인트에서 Ray를 발사함.
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 10.0f))
-            {
-                GameObject obj = hit.collider.gameObject;
-                if (obj.layer == LayerMask.NameToLayer("Interactable"))
-                {
-                    if (obj != curInteractGameObject)
-                    {
-                        curInteractGameObject = obj;
-                        interactable = curInteractGameObject.GetComponent<Interactable>();
-                        //Debug.Log($"{curInteractGameObject.name} 상호작용 할 수 있습니다.");
-                        itemInfoUI.ShowInfo(interactable);
-                    }
-                }
-                else
-                {
-                    curInteractGameObject = null;
-                    interactable = null;
-                    itemInfoUI.HideInfo();
-                }
-            }
-            else
-            {
-                curInteractGameObject = null;
-                interactable = null;
-                itemInfoUI.HideInfo();
-            }
-        }
     }
 
     private void OnTriggerEnter(Collider other)

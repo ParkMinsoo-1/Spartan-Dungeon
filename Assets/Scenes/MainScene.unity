@@ -1053,6 +1053,7 @@ GameObject:
   - component: {fileID: 987844204}
   - component: {fileID: 987844209}
   - component: {fileID: 987844208}
+  - component: {fileID: 987844212}
   - component: {fileID: 987844211}
   - component: {fileID: 987844210}
   m_Layer: 6
@@ -1238,10 +1239,6 @@ MonoBehaviour:
   cameraTransform: {fileID: 963194228}
   cameraDistance: 5
   cameraSmoothSpeed: 10
-  camera: {fileID: 0}
-  curInteractGameObject: {fileID: 0}
-  checkRate: 0.05
-  itemInfoUI: {fileID: 903385208}
   speed: 5
   jumpForce: 100
   layerMask:
@@ -1331,6 +1328,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceManager: {fileID: 0}
   playerController: {fileID: 0}
+--- !u!114 &987844212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987844203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bcff63461a40ca4bb7707e2817e6973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curInteractGameObject: {fileID: 0}
+  checkRate: 0.05
+  camera: {fileID: 0}
+  itemInfoUI: {fileID: 903385208}
 --- !u!1 &1054910176
 GameObject:
   m_ObjectHideFlags: 0
