@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private Interactable interactable;
     public float checkRate = 0.05f;
     private float lastCheckTime;
+    //public LayerMask interactableLayer;
     
     
     [Header("Movement")]
@@ -134,21 +135,23 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.gameObject != null)
+                // if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Interactable"))
+                //     return;
+
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") && 
+                    hit.collider.gameObject != curInteractGameObject)
                 {
                     curInteractGameObject = hit.collider.gameObject;
                     interactable = curInteractGameObject.GetComponent<Interactable>();
-                    Debug.Log($"{curInteractGameObject.name} has interacted with {interactable}");
+                    Debug.Log($"{curInteractGameObject.name} 상호작용 할 수 있습니다.");
                 }
             }
             else
             {
                 curInteractGameObject = null;
                 interactable = null;
-                Debug.Log("물건이 없습니다.");
+                Debug.Log("상호작용 할 수 있는 물건이 아닙니다");
             }
         }
-        
-        
     }
 }

@@ -994,6 +994,8 @@ MonoBehaviour:
   cameraDistance: 5
   cameraSmoothSpeed: 10
   camera: {fileID: 0}
+  curInteractGameObject: {fileID: 0}
+  checkRate: 0.05
   speed: 5
   jumpForce: 100
   layerMask:

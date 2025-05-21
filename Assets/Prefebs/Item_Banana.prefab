@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3437618161580705004}
   - component: {fileID: 2129537477100110665}
   - component: {fileID: 7048215861092322245}
+  - component: {fileID: 750315620269111823}
   m_Layer: 7
   m_Name: Item_Banana
   m_TagString: Untagged
@@ -74,6 +75,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 0}
+--- !u!65 &750315620269111823
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3968524902276247107}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.063981056, y: 0.09340328, z: 0.215038}
+  m_Center: {x: -0.003683885, y: 0.00680245, z: 0.0028117597}
 --- !u!1 &8299733147341335999
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +107,6 @@ GameObject:
   - component: {fileID: 3005563701534315383}
   - component: {fileID: 3202447868280474682}
   - component: {fileID: 8566274870416353627}
-  - component: {fileID: 7807371366878738953}
   m_Layer: 7
   m_Name: Banana
   m_TagString: Untagged
@@ -158,24 +179,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7807371366878738953
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8299733147341335999}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.03776887, y: 0.077711895, z: 0.19450995}
-  m_Center: {x: 0.0005739657, y: 0.012489049, z: 0.0012512021}
