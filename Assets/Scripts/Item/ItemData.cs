@@ -8,6 +8,12 @@ public enum ItemType
     Equipable,
 }
 
+public enum ConsumableType
+{
+    health,
+    stamina
+}
+
 
 [CreateAssetMenu(fileName = "New Item", menuName = "New Item")]
 public class ItemData : ScriptableObject
@@ -17,4 +23,5 @@ public class ItemData : ScriptableObject
     public string itemDescription;
     public ItemType itemType;
     public GameObject itemPrefab;
+    public float value;
 }

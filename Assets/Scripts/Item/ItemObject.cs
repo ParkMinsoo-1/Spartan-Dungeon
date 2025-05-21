@@ -4,11 +4,11 @@ using UnityEngine;
 
 public interface Interactable
 {
-    public string GetInfo();
+    public (string name, string description) GetInfo();
     public void OnInteraction();
 
 }
-public class ItemObject : MonoBehaviour
+public class ItemObject : MonoBehaviour, Interactable
 {
     public ItemData itemData;
 
@@ -23,9 +23,9 @@ public class ItemObject : MonoBehaviour
         
     }
 
-    public string GetInfo()
+    public (string name, string description) GetInfo()
     {
-        return null;
+        return (itemData.itemName, itemData.itemDescription);
     }
 
     public void OnInteraction()

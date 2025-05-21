@@ -21,7 +21,10 @@ public class PlayerController : MonoBehaviour
     private Interactable interactable;
     public float checkRate = 0.05f;
     private float lastCheckTime;
-    //public LayerMask interactableLayer;
+    
+
+    public ItemInfoUI itemInfoUI; //나중에 UI처리 매니저에서 한번에 정리할 수 있도록 변경해보자. 지금은 인스펙터에 넣어줌.
+    
     
     
     [Header("Movement")]
@@ -133,24 +136,32 @@ public class PlayerController : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit, 10.0f))
             {
-                // if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Interactable"))
-                //     return;
-
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Interactable") && 
-                    hit.collider.gameObject != curInteractGameObject)
+                GameObject obj = hit.collider.gameObject;
+                if (obj.layer == LayerMask.NameToLayer("Interactable"))
                 {
-                    curInteractGameObject = hit.collider.gameObject;
-                    interactable = curInteractGameObject.GetComponent<Interactable>();
-                    Debug.Log($"{curInteractGameObject.name} 상호작용 할 수 있습니다.");
+                    if (obj != curInteractGameObject)
+                    {
+                        curInteractGameObject = obj;
+                        interactable = curInteractGameObject.GetComponent<ItemObject>();
+                        //Debug.Log($"{curInteractGameObject.name} 상호작용 할 수 있습니다.");
+                        itemInfoUI.ShowInfo(interactable);
+                    }
+                }
+                
+                else
+                {
+                    curInteractGameObject = null;
+                    interactable = null;
+                    itemInfoUI.HideInfo();
                 }
             }
             else
             {
                 curInteractGameObject = null;
                 interactable = null;
-                Debug.Log("상호작용 할 수 있는 물건이 아닙니다");
+                itemInfoUI.HideInfo();
             }
         }
     }
