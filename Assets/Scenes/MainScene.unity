@@ -371,7 +371,7 @@ MonoBehaviour:
   currentValue: 0
   startValue: 100
   maxValue: 100
-  passiveValue: 0
+  passiveValue: 5
 --- !u!1 &636316619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1239,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 963194228}
   cameraDistance: 5
   cameraSmoothSpeed: 10
+  curInteractGameObject: {fileID: 0}
   speed: 5
   jumpForce: 100
   layerMask:

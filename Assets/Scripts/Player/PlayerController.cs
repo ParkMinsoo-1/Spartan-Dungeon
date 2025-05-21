@@ -76,18 +76,19 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             
-            if (interactable != null)
+            if (curInteractGameObject != null)
             {
                 interactable.OnInteraction();
                 curInteractGameObject = null;
                 interactable = null;
             }
-     
-            if (interactable == null)
+                 
+            else
             {
                 Debug.Log("상호작용할 수 있는 아이템이 없습니다.");
             }
         }
+        
     }
 
     private void Move()
@@ -135,10 +136,15 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         curInteractGameObject = other.gameObject;
-        if (curInteractGameObject != null)
+        if (curInteractGameObject != null && curInteractGameObject.layer == LayerMask.NameToLayer("Interactable"))
         {
             interactable = curInteractGameObject.GetComponent<Interactable>();
             
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        curInteractGameObject = null;
     }
 }
