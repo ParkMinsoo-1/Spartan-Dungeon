@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface Interactable
+{
+    public string GetInfo();
+    public void OnInteraction();
+
+}
 public class ItemObject : MonoBehaviour
 {
     public ItemData itemData;
@@ -14,6 +20,16 @@ public class ItemObject : MonoBehaviour
         {
             Debug.Log($"{gameObject.name}을 찾을 수 없습니다.");
         }
+        
+    }
+
+    public string GetInfo()
+    {
+        return null;
+    }
+
+    public void OnInteraction()
+    {
         
     }
 }

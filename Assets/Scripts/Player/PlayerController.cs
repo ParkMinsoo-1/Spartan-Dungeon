@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
     public float cameraDistance = 5f;
     public float cameraSmoothSpeed = 10f;
     public Camera camera;
+    public GameObject curInteractGameObject;
+    private Interactable interactable;
+    public float checkRate = 0.05f;
+    private float lastCheckTime;
     
     
     [Header("Movement")]
@@ -37,10 +41,14 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        LookInfo();
+    }
+
     private void FixedUpdate()
     {
         Move();
-        
     }
 
     private void LateUpdate()
@@ -116,16 +124,31 @@ public class PlayerController : MonoBehaviour
 
     public void LookInfo() //마우스포인트에서 아이템의 정보를 확인함
     {
-        //마우스 포인트에서 Ray를 발사함.
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 10, layerMask))
+        if (Time.time - lastCheckTime > checkRate) //업데이트 되는 시간을 조절하기 위함.
         {
-            if (hit.collider.gameObject != null)
+            lastCheckTime = Time.time;
+            
+            //마우스 포인트에서 Ray를 발사함.
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("물체가 없습니다.");
+                if (hit.collider.gameObject != null)
+                {
+                    curInteractGameObject = hit.collider.gameObject;
+                    interactable = curInteractGameObject.GetComponent<Interactable>();
+                    Debug.Log($"{curInteractGameObject.name} has interacted with {interactable}");
+                }
+            }
+            else
+            {
+                curInteractGameObject = null;
+                interactable = null;
+                Debug.Log("물건이 없습니다.");
             }
         }
+        
+        
     }
 }
