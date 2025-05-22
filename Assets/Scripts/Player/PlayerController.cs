@@ -138,7 +138,6 @@ public class PlayerController : MonoBehaviour
         if (curInteractGameObject != null && curInteractGameObject.layer == LayerMask.NameToLayer("Interactable"))
         {
             interactable = curInteractGameObject.GetComponent<Interactable>();
-            
         }
     }
 
