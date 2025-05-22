@@ -11,14 +11,14 @@ public enum ItemType
 
 public enum ConsumableType
 {
-    health,
-    stamina,
+    Health,
+    Stamina,
 }
 
 public enum BuffType
 {
-    none,
-    speed
+    None,
+    Speed
 }
 
 

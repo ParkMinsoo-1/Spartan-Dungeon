@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerController _playerController;
     public ResourceController _resourceController;
     public ItemData _itemData;
+    public Action<ItemData> getItem;
 
     private Coroutine coroutine;
 
@@ -20,7 +21,12 @@ public class Player : MonoBehaviour
         CharacterManager.Instance.Player._resourceController.playerController = _playerController;
     }
 
-    private void Update()
+    void Start()
+    {
+        getItem += GetItem;
+    }
+
+    public void GetItem(ItemData _itemData)
     {
         if (_itemData == null)
             return;
@@ -35,22 +41,19 @@ public class Player : MonoBehaviour
                 coroutine = StartCoroutine(_resourceController.BuffCoroutine(_itemData));
                 break;
         }
-
-        _itemData = null;
     }
 
     private void UseConsumableItem()
     {
         switch (_itemData.consumableType)
         {
-            case ConsumableType.health:
+            case ConsumableType.Health:
                 _resourceController.resourceManager.health.AddResource(_itemData.value);
                 break;
-            case ConsumableType.stamina:
+            case ConsumableType.Stamina:
                 _resourceController.resourceManager.stamina.AddResource(_itemData.value);
                 break;
         }
-
         _itemData = null;
     }
 }

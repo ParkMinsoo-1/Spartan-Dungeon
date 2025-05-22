@@ -8,7 +8,8 @@ public class ResourceController : MonoBehaviour
     public ResourceManager resourceManager;
     public PlayerController playerController;
     private float originPlayerSpeed;
-    //public ItemData itemData;
+    private bool IsSpeedUp = false;
+    
     Resource health {get {return resourceManager.health;}}
     Resource stamina {get {return resourceManager.stamina;}}
 
@@ -19,15 +20,16 @@ public class ResourceController : MonoBehaviour
     }
     private void Update()
     {
-        
         stamina.SubtractionResource(stamina.passiveValue*Time.deltaTime);
         if (stamina.currentValue <= 0f)
         {
-            playerController.Speed = 2.0f;
+            if(!IsSpeedUp)
+                playerController.Speed = 2.0f;
         }
         else if (stamina.currentValue > 0f)
         {
-            playerController.Speed = originPlayerSpeed;
+            if(!IsSpeedUp)
+                playerController.Speed = originPlayerSpeed;
         }
     }
 
@@ -41,7 +43,7 @@ public class ResourceController : MonoBehaviour
     public IEnumerator BuffCoroutine(ItemData itemData) 
     {
         string methodName = $"Buff_{itemData.buffType}";
-        var method = GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance);
+        var method = GetType().GetMethod(methodName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
         if (method != null)
         {
@@ -52,12 +54,15 @@ public class ResourceController : MonoBehaviour
             Debug.Log($"Buff 메서드 {methodName}가 없습니다.");
         }
     }
-    public IEnumerator Buff_speed(ItemData item)
+    public IEnumerator Buff_Speed(ItemData itemData)
     {
-        //float originalSpeed = playerController.Speed;
-        playerController.Speed += item.buffValue;
-        yield return new WaitForSeconds(item.buffDuration);
+        IsSpeedUp = true;
+        playerController.Speed += itemData.buffValue;
+        Debug.Log("이동속도 증가!");
+        yield return new WaitForSeconds(itemData.buffDuration);
+        IsSpeedUp = false;
         playerController.Speed = originPlayerSpeed;
+        Debug.Log("이동속도 버프 끝");
     }
     
 }
